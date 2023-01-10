@@ -10,16 +10,16 @@ let auth = (req, res, next) => {
 
         // if user not found, auth fail
         if (!user) {
-            res.json({
+            return res.json({
                 isAuth: false,
                 error: true
             });
-        } else {
-            // if user found, auth success
-            req.token = token;
-            req.user = user;
-            next();
         }
+
+        // if user found, auth success
+        req.token = token;
+        req.user = user;
+        next();
     });
 };
 
